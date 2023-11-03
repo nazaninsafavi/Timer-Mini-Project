@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React ,{useState} from 'react';
+import Timer from './Timer'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+
+const App =()=>{
+  const [isLight , setIsLight]=useState("false");
+
+  const handleSetIsLight =()=>{
+          setIsLight(!isLight)
+
+  }
+
+  return(
+    <div className='main' style={{background:isLight? "white": "black"}}>
+      <Timer isLight={isLight} handleSetIsLight={handleSetIsLight}></Timer>
     </div>
-  );
+  )
 }
 
 export default App;
+
