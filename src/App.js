@@ -19,13 +19,14 @@ const App =()=>{
 
   return(
     // Context 
-    <testContext.Provider value='blue'>
+    <testContext.Provider value={{
+      // Using Context
+      timeArr:timeArr,
+      setTimeArr:setTimeArr}}>
         <div className='main' style={{background:isLight? "white": "black"}}>
       <Timer 
 
       // Prop Drailing
-      timeArr={timeArr}
-      setTimeArr={setTimeArr}
       isLight={isLight} handleSetIsLight={handleSetIsLight}></Timer>
      
     </div>

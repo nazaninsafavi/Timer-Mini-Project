@@ -69,7 +69,7 @@ export default class Timer extends Component {
     let newTime = `${h>9 ?h : "0"+h} : ${m>9 ? m :"0"+m} : ${s>9 ?s :"0"+s}`
 
     // The Following script called Spread Operator :  
-    this.props.setTimeArr(...this.props.timeArr , newTime)
+    this.context.setTimeArr(...this.context.timeArr , newTime)
 
   }
 
@@ -108,7 +108,7 @@ export default class Timer extends Component {
         </div>
         <div className='submain'>
           <Time>
-              {this.props.timeArr}
+              {this.context.timeArr}
           </Time>
       </div>
    

@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const testContext =createContext("blue")
+export const testContext =createContext({})
