@@ -1,6 +1,11 @@
+import { useContext } from "react"
+import { testContext } from "./textContext"
+
 const Item =(props)=>{
+    // Use context in functional components: 
+    const context = useContext(testContext)
     return(
-        <div>{props.children}</div>
+        <div style={{color:context}}>{props.children}</div>
     )
     
 }

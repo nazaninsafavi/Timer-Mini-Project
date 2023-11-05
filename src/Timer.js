@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
+import Time from './Timelist';
+import { testContext } from './textContext';
 
 var interval;
 
@@ -12,7 +14,12 @@ export default class Timer extends Component {
       second:0,
       isStart:false
     }
+    
   }
+ // Which context we wanna use in this class component? 
+ //Definition of a Context in this class Component
+  static contextType = testContext;
+
   startInterval =()=>{
     if(this.state.isStart ===false){
       this.setState({
@@ -55,6 +62,16 @@ export default class Timer extends Component {
     })
 
   }
+  handleSevaTime = ()=>{
+    let h =this.state.hour
+    let m =this.state.minute
+    let s =this.state.second
+    let newTime = `${h>9 ?h : "0"+h} : ${m>9 ? m :"0"+m} : ${s>9 ?s :"0"+s}`
+
+    // The Following script called Spread Operator :  
+    this.props.setTimeArr(...this.props.timeArr , newTime)
+
+  }
 
 
   render() {
@@ -67,7 +84,11 @@ export default class Timer extends Component {
         <div className='container'>
           <div className='text' style={{color:this.props.isLight?"black":"white"}}>Timer with Javascript</div>
           <div className='Box'>
-            <h2 className='timer'>{`${h>9 ?h : "0"+h} : ${m>9 ? m :"0"+m} : ${s>9 ?s :"0"+s}` }</h2>
+            <h2 className='timer'
+              onClick={this.handleSevaTime}
+              // Use of Context 
+              style={{color:this.context}}
+            >{`${h>9 ?h : "0"+h} : ${m>9 ? m :"0"+m} : ${s>9 ?s :"0"+s}` }</h2>
           </div>
           <div className='Buttonbox'>
             <span className='action_button start_button' onClick={this.startInterval}>start</span>
@@ -85,6 +106,11 @@ export default class Timer extends Component {
           </div>
       
         </div>
+        <div className='submain'>
+          <Time>
+              {this.props.timeArr}
+          </Time>
+      </div>
    
       </>
       
